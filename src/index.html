@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Paz</h1>
+
+      <div class="separator"></div>
+
+      <ol>
+        <li>Escoge un archivo</li>
+        <li>Escribe la contraseña</li>
+        <li>Escoge el mode que deseas</li>
+        <li>Listo!</li>
+      </ol>
+
+      <div class="separator"></div>
+
+      <div id="actions">
+        <form>
+          <button>Escoge el archivo</button>
+          <label>Enter Password</label>
+          <input type="password" label="Contraseña">
+          <div id="modes">
+            <button>Cerrar Folder</button>
+            <button>Abrir Folder</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </body>
+</html>
