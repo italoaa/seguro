@@ -9,30 +9,35 @@
   </head>
 
   <body>
-    <div class="container">
-      <h1>Paz</h1>
+    <div id="Content">
+      <h1>SEGURO</h1>
 
       <div class="separator"></div>
 
       <ol>
-        <li>Escoge un archivo</li>
-        <li>Escribe la contraseña</li>
-        <li>Escoge el mode que deseas</li>
+        <li>1. Asegurate que el folder este en tu escritorio</li>
+        <br />
+        <li>2. Escribe el nombre del folder</li>
+        <br />
+        <li>3. Escribe la contraseña</li>
+        <br />
+        <li>4. Escoge el modo para el folder</li>
+        <br />
         <li>Listo!</li>
       </ol>
 
       <div class="separator"></div>
 
       <div id="actions">
-        <form>
-          <button>Escoge el archivo</button>
-          <label>Enter Password</label>
-          <input type="password" label="Contraseña">
+        <div id="form">
+          <input type="text" name="archivo" value="" placeholder="Nombre del folder"/>
+          <!-- <button>Escoge el archivo</button> -->
+          <input placeholder="contraseña" type="password" label="Contraseña">
           <div id="modes">
-            <button>Cerrar Folder</button>
-            <button>Abrir Folder</button>
+            <button id="cerrar">Cerrar</button>
+            <button id="abrir">Abrir</button>
           </div>
-        </form>
+        </div>
       </div>
 
     </div>

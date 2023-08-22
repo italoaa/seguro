@@ -1,6 +1,5 @@
 #+title: Paz
 
-
 * Description
 This is a simple application that will have a simple GUI. The purpose of this application is to speed up the process of zipping a folder with a password and removing the unzipped version (encryption process) and also speeding up the unzipping of the folder and replacing the zipped one with the unzipped one. The idea of the gui is to make this accessable to any person.
 

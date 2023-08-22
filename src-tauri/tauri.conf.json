@@ -16,6 +16,12 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "fs" : {
+        "exists": true
+      },
+      "path": {
+        "all": true
       }
     },
     "bundle": {
