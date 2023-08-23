@@ -14,28 +14,31 @@
 
       <div class="separator"></div>
 
-      <ol>
-        <li>1. Asegurate que el folder este en tu escritorio</li>
+      <ol class="creations hide">
+        <li>1. Ingresa la contraseña para tu nueva caja fuerte</li>
         <br />
-        <li>2. Escribe el nombre del folder</li>
+        <li>2. Haz click en el boton de crear tu caja fuerte</li>
         <br />
-        <li>3. Escribe la contraseña</li>
+        <li>3. Listo! Debes tener un folder nuevo en tu escritorio</li>
+      </ol>
+
+      <ol class="operations hide">
+        <li>1. Ingresa la contraseña de tu caja fuerte</li>
         <br />
-        <li>4. Escoge el modo para el folder</li>
+        <li>2. Escoje abrir o cerrar tu caja fuerte</li>
         <br />
-        <li>Listo!</li>
+        <li>3. Puede tardar un poco respecto al tamaño de tu caja fuerte</li>
       </ol>
 
       <div class="separator"></div>
 
       <div id="actions">
         <div id="form">
-          <input type="text" name="archivo" value="" placeholder="Nombre del folder"/>
-          <!-- <button>Escoge el archivo</button> -->
-          <input placeholder="contraseña" type="password" label="Contraseña">
+          <input class="operations hide" id="password" placeholder="contraseña" type="password" label="Contraseña">
           <div id="modes">
-            <button id="cerrar">Cerrar</button>
-            <button id="abrir">Abrir</button>
+            <button class="operations hide" id="cerrar">Cerrar</button>
+            <button class="operations hide" id="abrir">Abrir</button>
+            <button class="creations hide" id="crear">Crear una caja fuerte</button>
           </div>
         </div>
       </div>

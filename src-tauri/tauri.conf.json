@@ -18,10 +18,14 @@
         "open": true
       },
       "fs" : {
-        "exists": true
+        "exists": true,
+        "scope" : ["$DESKTOP/*"]
       },
       "path": {
         "all": true
+      },
+      "dialog" : {
+        "message" : true
       }
     },
     "bundle": {
