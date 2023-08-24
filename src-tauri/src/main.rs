@@ -45,31 +45,63 @@ fn close_vault(mut password: String) -> i32 {
     };
 
     let zip_src = PathBuf::from(desktop.clone() + "/CajaFuerte");
-    let zip_dest = PathBuf::from(desktop.clone() + "/CajaFuerte-zip");
-    let zip_dest2 = zip_dest.clone();
-    let _ = zip_folder(&zip_src, &zip_dest);
-
+    let zip_dest = PathBuf::from(desktop.clone() + "/CajaFuerte.zip");
     let enc_dest = zip_dest
         .clone()
         .into_os_string()
         .into_string()
         .unwrap()
+        .strip_suffix(".zip")
+        .unwrap()
         .to_string()
         + ".encrypted";
-    let enc_src = zip_dest.into_os_string().into_string().unwrap();
+    let enc_src = zip_dest.clone().into_os_string().into_string().unwrap();
 
-    // handle the encryption
-    let _ = encrypt_file(&enc_src, &enc_dest, &password).unwrap();
-
-    password.zeroize();
-    return 0;
+    // Handle Zip
+    match zip_folder(&zip_src, &zip_dest) {
+        Err(e) => panic!("{}", e),
+        Ok(_) => {
+            // handle the encryption
+            match encrypt_file(&enc_src, &enc_dest, &password) {
+                Err(e) => panic!("{}", e),
+                Ok(_) => {
+                    password.zeroize();
+                    return 0;
+                }
+            };
+        }
+    };
 }
 
-// TODO Open valut
+// Open valut
 #[tauri::command]
-fn open_vault(password: &str) -> i32 {
-    println!("the password is{}", password);
-    return 0;
+fn open_vault(mut password: String) -> i32 {
+    let desktop: String = match path::desktop_dir() {
+        None => {
+            panic!("no desktop")
+        }
+        Some(file) => file.into_os_string().into_string().unwrap(),
+    };
+
+    let dec_src = desktop.clone() + "/CajaFuerte.encrypted";
+    let dec_dest = desktop.clone() + "/CajaFuerte.zip";
+    let zip_src = PathBuf::from(dec_dest.clone());
+    let zip_dest = PathBuf::from(dec_dest.strip_suffix(".zip").unwrap().to_string() + "2");
+
+    // Handle decryption
+    match decrypt_file(&dec_src, &dec_dest, &password) {
+        Err(e) => panic!("{}", e),
+        Ok(_) => {
+            // handle the unzip
+            match unzip_folder(&zip_src, &zip_dest) {
+                Err(e) => panic!("{}", e),
+                Ok(_) => {
+                    password.zeroize();
+                    return 0;
+                }
+            };
+        }
+    };
 }
 
 fn main() {
