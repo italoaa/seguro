@@ -1,10 +1,10 @@
 #+title: Paz
 
 * Description
-This is a simple application that will have a simple GUI. The purpose of this application is to speed up the process of zipping a folder with a password and removing the unzipped version (encryption process) and also speeding up the unzipping of the folder and replacing the zipped one with the unzipped one. The idea of the gui is to make this accessable to any person.
+This is a simple application that will have a simple GUI. The purpose of this application is to speed up the process of zipping a folder encrypting it and removing the unzipped and un-encrypted version (encryption process) and also speeding up the unzipping and decrypting of the folder. The idea of the gui is to make this accessable to any person.
 
 _Disclaimer_:
-The encryption part of the project is heavily inspired by Sylvain Kerkour from her [[https://kerkour.com/rust-file-encryption-chacha20poly1305-argon2][blog]]. This resource helped me so much to understand this encryption technique and not make an insecure application due to my lack of experience. I used code from her blog which i later read thoroughly and made many comments for myself to understand hahah :).
+The encryption part of the project is heavily inspired by Sylvain Kerkour from her [[https://kerkour.com/rust-file-encryption-chacha20poly1305-argon2][blog]]. This resource helped me so much to understand this encryption technique and not make an insecure application. Everything is commented so if you read through the code you would understand better.
 
 * Functionality
 The app should have *two* Functionalities These should be clear to the user
@@ -16,7 +16,7 @@ The app should have *two* Functionalities These should be clear to the user
 After some research there is no easy way to zip encrypt, thus we need the long route:
     1. Zip the folder into one file (not-password protected)
     2. Ask user for a password
-    3. Use [[https://cryptobook.nakov.com/mac-and-key-derivation/pbkdf2][PBKDF2]] for key derivation
+    3. Use argon2 for key derivation
     4. Store a hash of the key
     5. Use the key for a symmetric key cipher
     6. *DESTROY* the previous un-encrypted version
@@ -25,8 +25,15 @@ After some research there is no easy way to zip encrypt, thus we need the long r
 The encryption should be like this:
 
     1. Ask the user for the password of the encrypted file
-    2. Use [[https://cryptobook.nakov.com/mac-and-key-derivation/pbkdf2][PBKDF2]] for key derivation
-    3. Check the key against the hash before trying to decrypt for faster validation
+    2. Use argon2 for key derivation
+    3. Check the key against the hash before trying to decrypt.
     4. decryption if key is correct
     5. *DESTROY* the previous encrypted version
 
+* Tasklist
+** TODO implement a delete function
+** TODO Store the hash in the file to make sure the password is correct
+** TODO Check against the hash
+** TODO Appearance
+*** TODO Make the window a certain size
+*** TODO Disable the button for closing if the vault is closed, same with open
