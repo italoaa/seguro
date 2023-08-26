@@ -1,4 +1,4 @@
-#+title: Paz
+#+title: Seguro
 
 * Description
 This is a simple application that will have a simple GUI. The purpose of this application is to speed up the process of zipping a folder encrypting it and removing the unzipped and un-encrypted version (encryption process) and also speeding up the unzipping and decrypting of the folder. The idea of the gui is to make this accessable to any person.
@@ -31,9 +31,9 @@ The encryption should be like this:
     5. *DESTROY* the previous encrypted version
 
 * Tasklist
-** TODO implement a delete function
-** TODO Store the hash in the file to make sure the password is correct
-** TODO Check against the hash
-** TODO Appearance
-*** TODO Make the window a certain size
-*** TODO Disable the button for closing if the vault is closed, same with open
+** DONE implement a delete function
+** DONE icons
+** DONE clear the password when they close the vault or open
+** DONE Appearance
+*** DONE Make the window a certain size
+*** DONE Disable the button for closing if the vault is closed, same with open

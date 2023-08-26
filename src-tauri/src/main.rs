@@ -11,8 +11,10 @@ use zeroize::Zeroize;
 
 const VAULT_NAME: &str = "CajaFuerte";
 
+// This is a struct to hold all the filenames for the application
 struct Filenames {
-    vault_path: PathBuf, // The pathBuffer for the original vault
+    vault_path: PathBuf,
+    svault_path: String,
     zipped: PathBuf,
     szipped: String,
     encrypted: String,
@@ -44,6 +46,7 @@ fn get_filenames(vault_name: &str) -> Filenames {
 
     return Filenames {
         vault_path,
+        svault_path,
         zipped,
         szipped,
         encrypted,
@@ -80,14 +83,6 @@ fn close_vault(mut password: String) -> i32 {
     // Handle Zip
     let filenames: Filenames = get_filenames(VAULT_NAME);
 
-    // println!(
-    //     "1. {}\n2. {}\n3. {}",
-    //     filenames.vault_path.into_os_string().into_string().unwrap(),
-    //     filenames.szipped,
-    //     filenames.encrypted
-    // );
-    // return 0;
-
     match zip_folder(&filenames.vault_path, &filenames.zipped) {
         Err(e) => panic!("{}", e),
         Ok(_) => {
@@ -95,6 +90,10 @@ fn close_vault(mut password: String) -> i32 {
             match encrypt_file(&filenames.szipped, &filenames.encrypted, &password) {
                 Err(e) => panic!("{}", e),
                 Ok(_) => {
+                    // We need to clean up and remove the other versions
+                    fs::remove_file(&filenames.szipped).unwrap();
+                    fs::remove_dir_all(&filenames.svault_path).unwrap();
+                    // as well as take the password away from memory
                     password.zeroize();
                     return 0;
                 }
@@ -111,12 +110,21 @@ fn open_vault(mut password: String) -> i32 {
 
     // Handle decryption
     match decrypt_file(&filenames.encrypted, &filenames.szipped, &password) {
-        Err(e) => panic!("{}", e),
+        Err(_) => {
+            // This is when a key is wrong find a way to handle this
+            // Return and delete the wrong decrypted file
+            fs::remove_file(&filenames.szipped).unwrap();
+            return 1; // 1 for incorrect
+        }
         Ok(_) => {
             // handle the unzip
             match unzip_folder(&filenames.zipped, &filenames.vault_path) {
                 Err(e) => panic!("{}", e),
                 Ok(_) => {
+                    // Clean up
+                    fs::remove_file(&filenames.szipped).unwrap();
+                    fs::remove_file(&filenames.encrypted).unwrap();
+
                     password.zeroize();
                     return 0;
                 }

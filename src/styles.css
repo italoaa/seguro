@@ -3,6 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     background: #EEE;
+    overflow: hidden;
 }
 
 .hide {
@@ -17,15 +18,28 @@ body {
     display: flex;
     flex-direction: column;
     margin: 5rem;
+    margin-top: 10px;
     justify-content: center;
     align-items: center;
     gap: 21px;
     box-shadow: 4px 4px;
+    height: 80vh;
+    width: 80vw;
+}
+
+#flower {
+    width: 100px;
+    height: 100px;
+}
+
+#title {
+    border: 1px solid #000;
+    box-shadow: 5px 5px;
+    display: flex;
+    flex-direction: row;
 }
 
 #Content h1 {
-    border: 1px solid #000;
-    box-shadow: 5px 5px;
     color: #00333A;
     font-family: "Tenor";
     font-size: 2.5rem;
@@ -34,6 +48,7 @@ body {
     line-height: normal;
     margin: auto;
     padding: 2rem;
+    padding-right: 0px;
 }
 
 @font-face {
@@ -121,6 +136,6 @@ button , input {
     width:100%;
 }
 
-button:hover {
+.hovereable:hover {
     background: #aaa;
 }
