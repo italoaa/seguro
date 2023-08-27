@@ -30,10 +30,8 @@ The encryption should be like this:
     4. decryption if key is correct
     5. *DESTROY* the previous encrypted version
 
-* Tasklist
-** DONE implement a delete function
-** DONE icons
-** DONE clear the password when they close the vault or open
-** DONE Appearance
-*** DONE Make the window a certain size
-*** DONE Disable the button for closing if the vault is closed, same with open
+* Tasklist after testing
+** TODO Loading animations for creating, closing and opening the vault
+It is necesrry for the user to know clearly when the vault is opening and closing. Due to the fact that the vault looks like another folder the user may not notice it and thus we need to make it clear when we are processing any operations.
+** TODO Icon for the vault folder
+** TODO Only have one button for creating closing or opening at the same time.
