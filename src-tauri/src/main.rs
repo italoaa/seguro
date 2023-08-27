@@ -20,6 +20,13 @@ struct Filenames {
     encrypted: String,
 }
 
+fn backup_vault(filenames: &Filenames) {
+    let mut backup_path = filenames.vault_path.clone();
+    backup_path.pop();
+    backup_path.push(".".to_owned() + VAULT_NAME + ".zip");
+    fs::copy(filenames.szipped.clone(), backup_path).unwrap();
+}
+
 fn get_filenames(vault_name: &str) -> Filenames {
     let desktop: String = path::desktop_dir()
         .expect("Can't find the desktop")
@@ -90,6 +97,10 @@ fn close_vault(mut password: String) -> i32 {
             match encrypt_file(&filenames.szipped, &filenames.encrypted, &password) {
                 Err(e) => panic!("{}", e),
                 Ok(_) => {
+                    // THIS IS JUST FOR TESTING PURPOSES TO ENSURE THE SAFTY OF THE DATA
+                    backup_vault(&filenames);
+                    
+
                     // We need to clean up and remove the other versions
                     fs::remove_file(&filenames.szipped).unwrap();
                     fs::remove_dir_all(&filenames.svault_path).unwrap();

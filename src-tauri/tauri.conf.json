@@ -20,6 +20,7 @@
 	    "fs" : {
 		"exists": true,
 		"removeDir" :true,
+		"copyFile" : true,
 		"removeFile" :true,
 		"scope" : ["$DESKTOP/*"]
 	    },
