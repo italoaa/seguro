@@ -35,24 +35,28 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // event listeners for clicks on buttons
     document.querySelector('#crear').addEventListener("click", async () => {
-	const result = await invoke("create_vault");
-	    console.log(result)
-	// Reload the app
-	if (result === 0) { // 0 is success
-	    // Success
-	    location.reload()
-	} else { // Something else but 0 so error
-	    // handle and notify
-	    if (result === 1) { // Could not create the folder
-
-		message("No se pudo crear la caja fuerte", {title: 'Error', type: "error"});
+	passwordInput = document.querySelector('#password');
+	if (passwordInput.value === "") {
+	    // alert empty password
+	    message("Contraseña Vacía", {title: 'Error', type: "error"});
+	} else {
+	    const result = await invoke("create_vault", {password: passwordInput.value});
+	    // Reload the app
+	    if (result === 0) { // 0 is success
+		// Success
 		location.reload()
+	    } else { // Something else but 0 so error
+		// handle and notify
+		if (result === 1) { // Could not create the folder
 
-	    } else if (result === 2) { // Could not get the desktop path
+		    message("No se pudo crear la caja fuerte", {title: 'Error', type: "error"});
+		    location.reload()
 
-		message("No se pudo conseguir camino al escritorio", {title: 'Error', type: "error"});
-		location.reload()
+		} else if (result === 2) { // Could not get the desktop path
 
+		    message("No se pudo conseguir camino al escritorio", {title: 'Error', type: "error"});
+		    location.reload()
+		}
 	    }
 	}
     })

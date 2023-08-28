@@ -29,6 +29,9 @@
 	    },
 	    "dialog" : {
 		"message" : true
+	    },
+	    "shell": {
+		"all": true
 	    }
 	},
 	"bundle": {
