@@ -10,6 +10,54 @@ body {
     display:none;
 }
 
+
+#notice {
+    position: absolute;
+    z-index: 10;
+    background: #000;
+    opacity: 80%;
+    color: #F5FFF3;
+    opacity: 0%;
+}
+
+#notice h2 {
+    font-family: "Tenor";
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: auto;
+    padding: 2rem;
+}
+
+@keyframes my_blur {
+    from {
+	filter: blur(0px);
+    }
+    to {
+	filter: blur(50px);
+    }
+}
+
+.ani_notice {
+    animation: my_notice 3s ease 2 forwards alternate;
+}
+
+@keyframes my_notice {
+    from {
+	filter: blur(50px);
+	opacity: 0%;
+    }
+    to {
+	filter: blur(0px);
+	opacity: 100%;
+    }
+}
+
+.ani_blur {
+    animation: my_blur 3s ease 2 forwards alternate;
+}
+
 #Content {
     border: 1px solid #000;
     padding: 3rem;
@@ -139,3 +187,4 @@ button , input {
 .hovereable:hover {
     background: #aaa;
 }
+

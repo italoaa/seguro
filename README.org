@@ -31,7 +31,12 @@ The encryption should be like this:
     5. *DESTROY* the previous encrypted version
 
 * Tasklist after testing
-** TODO Loading animations for creating, closing and opening the vault
+** DONE Loading animations for creating, closing and opening the vault
 It is necesrry for the user to know clearly when the vault is opening and closing. Due to the fact that the vault looks like another folder the user may not notice it and thus we need to make it clear when we are processing any operations.
 ** TODO Icon for the vault folder
-** TODO Only have one button for creating closing or opening at the same time.
+*** TODO pull the mac os binary as a helper
+*** TODO exec the command to change the icon of the vault
+** TODO Handle the case where the vault folder is moved but the hash.txt is still there
+** DONE Only have one button for creating closing or opening at the same time.
+** DONE Save password hash on creation  
+** DONE Check hashes

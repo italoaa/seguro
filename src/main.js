@@ -5,12 +5,12 @@ const { message } = window.__TAURI__.dialog;
 
 let state; // 0 closed, 1 oppened
 
-// Main application logic
-window.addEventListener("DOMContentLoaded", async () => {
+async function update_state() {
     // Is the valut Present
     const vaultPath = await isValutPresent();
 
     // check if the valut exists
+    console.log("vault path: " + vaultPath);
     if (vaultPath) {
 	// The Valut exists!
 	operations();
@@ -19,20 +19,39 @@ window.addEventListener("DOMContentLoaded", async () => {
 	creation();
     }
 
-
-    let passwordInput;
-    
-    // TODO: handle this disable button
+    // handle this disable button
+    console.log("state is: " + state);
     if (state === 0) {
 	// The vault is open disable 
-	document.querySelector('#abrir').style.opacity = "40%";
-	document.querySelector('#abrir').classList.remove("hovereable")
-    } else {
+	document.querySelector('#abrir').classList.add("hide");
+	document.querySelector('#cerrar').classList.remove("hide");
+    } else if (state === 1){
 	// The vault is close disable 
-	document.querySelector('#cerrar').style.opacity = "40%";
-	document.querySelector('#cerrar').classList.remove("hovereable")
+	document.querySelector('#cerrar').classList.add("hide");
+	document.querySelector('#abrir').classList.remove("hide");
     }
+}
 
+async function show_notice(message) {
+    document.querySelector("#notice h2").innerHTML = message;
+    document.querySelector("#notice").classList.add("ani_notice");
+    document.querySelector("#Content").classList.add("ani_blur");
+    setTimeout(async function () {
+	await update_state();
+	setTimeout(async function () {
+	    document.querySelector("#notice").classList.remove("ani_notice");
+	    document.querySelector("#Content").classList.remove("ani_blur");
+	}, 3000);
+    }, 3000);
+}
+
+// Main application logic
+window.addEventListener("DOMContentLoaded", async () => {
+    
+    let passwordInput;
+
+    await update_state();
+    
     // event listeners for clicks on buttons
     document.querySelector('#crear').addEventListener("click", async () => {
 	passwordInput = document.querySelector('#password');
@@ -44,7 +63,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 	    // Reload the app
 	    if (result === 0) { // 0 is success
 		// Success
-		location.reload()
+		await show_notice("Caja Fuerte CREADA")
+		passwordInput = document.querySelector('#password');
+		passwordInput.value = "";
 	    } else { // Something else but 0 so error
 		// handle and notify
 		if (result === 1) { // Could not create the folder
@@ -73,9 +94,13 @@ window.addEventListener("DOMContentLoaded", async () => {
 	    if (result === 1) {
 		// The password is incorrect
 		message("Contraseña Incorrecta", {title: 'Error', type: "error"});
+	    } else if (result === 2) {
+		message("Error Abriendo", {title: 'Error', type: "error"});
+	    } else {
+		await show_notice("Caja Fuerte ABIERTA")
+		passwordInput = document.querySelector('#password');
+		passwordInput.value = "";
 	    }
-	    passwordInput.value = "";
-	    location.reload()
 	}
     })
 
@@ -88,8 +113,15 @@ window.addEventListener("DOMContentLoaded", async () => {
 	    message("Contraseña Vacía", {title: 'Error', type: "error"});
 	} else {
 	    const result = await invoke("close_vault", { password : passwordInput.value});
-	    passwordInput.value = "";
-	    location.reload()
+	    if (result === 1) {
+		// The password is incorrect
+		message("Contraseña Incorrecta", {title: 'Error', type: "error"});
+	    } else {
+		await show_notice("Caja Fuerte CERRADA")
+		passwordInput = document.querySelector('#password');
+		passwordInput.value = "";
+	    }
+	    
 	}
     })
 });
@@ -108,6 +140,9 @@ async function isValutPresent() {
     } else if (encrypted_vault){
 	// the vault is closed
 	state = 1;
+    } else {
+	// Vault is not created
+	state = 2; 
     }
 
     return decrypted_vault || encrypted_vault
@@ -119,6 +154,10 @@ function operations() {
     document.querySelectorAll('.operations').forEach(el => {
 	el.classList.remove("hide");
     });
+    document.querySelectorAll('.creations').forEach(el => {
+	el.classList.add("hide");
+	console.log(el);
+    });
 }
 
 function creation() {
@@ -128,24 +167,8 @@ function creation() {
 	el.classList.remove("hide");
 	console.log(el);
     });
+    document.querySelectorAll('.operations').forEach(el => {
+	el.classList.add("hide");
+    });
 
 }
-
-
-
-// let greetInputEl;
-// let greetMsgEl;
-
-// async function greet() {
-//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-//   greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-// }
-
-// window.addEventListener("DOMContentLoaded", () => {
-//   greetInputEl = document.querySelector("#greet-input");
-//   greetMsgEl = document.querySelector("#greet-msg");
-//   document.querySelector("#greet-form").addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     greet();
-//   });
-// });
