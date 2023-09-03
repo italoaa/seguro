@@ -1,10 +1,11 @@
 :root {
-    my-bg: #1A1A1D;
-    my-red: #B32742;
-    my-green: #27B34E;
-    my-bg-green: #061D11;
-    my-bg-red: #1D060A;
-    my-radius: 15px;
+    --main-bg: #1A1A1D;
+    --main-red: #B32742;
+    --main-green: #27B34E;
+    --main-bg-green: #061D11;
+    --main-bg-red: #1D060A;
+    --main-radius: 15px;
+    --main-bg-grey: #4E4E50;
 }
 
 body {
@@ -12,6 +13,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 34px;
+    overflow: hidden;
+    padding: 10px;
     
     /* Style */
     background: #1A1A1C;
@@ -38,4 +41,51 @@ p {
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.24px;
+}
+
+button {
+    font-family: Avenir;
+    font-size: 30px;
+    color: #AAA;
+    background-color: var(--main-bg-grey);
+    border: 1px solid #AAA;
+    border-radius: var(--main-radius);
+    padding: 10px;
+}
+
+button:hover {
+    color: #FFF;
+    border: 1px solid #FFF;
+}
+
+button:active {
+    opacity: 30%;
+    filter: blur(1px);
+    color: #FFF;
+    border: 1px solid #FFF;
+}
+
+#lock circle {
+    transition: fill 1s ease-out 0s;
+}
+
+#lock #topsemi {
+    transform-origin: center center;
+    transition: transform 1s ease-out 0s;
+}
+
+#lock:hover #topsemi{
+    transform: translateY(-15px) translateX(-15px) rotateZ(45deg);
+}
+
+#switch circle {
+    transition: transform 1s ease-out 0s;
+}
+
+#switch rect {
+    transition: fill 1s ease-out 0s;
+}
+
+#switch:hover circle {
+    transform: translateX(120px);
 }

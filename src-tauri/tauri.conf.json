@@ -22,7 +22,7 @@
 		"removeDir" :true,
 		"copyFile" : true,
 		"removeFile" :true,
-		"scope" : ["$DESKTOP/*"]
+		"scope" : ["$DESKTOP/**"]
 	    },
 	    "path": {
 		"all": true
