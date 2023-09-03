@@ -9,47 +9,41 @@
   </head>
 
   <body>
-    <div id="notice">
-      <h2></h2>
+    <h1>Seguro</h1>
+    <div id="1" class="text">
+      <p>
+	Bienvenido a Seguro!
+	<br/>
+	Con "Seguro" tus archivos adentro de tu caja fuerte son solo para ti!
+      </p>
     </div>
-    <div id="Content">
-      <div id="title"> 
-	<h1>SEGURO</h1>
-	<img id="flower" alt="flower logo" src="./flower.png">
-      </div>
-
-      <div class="separator"></div>
-
-      <ol class="creations hide">
-        <li>1. Parece que no tienes una caja fuerte!</li>
-        <br />
-        <li>2. Haz click en el boton de crear para iniciar tu caja fuerte</li>
-        <br />
-        <li>3. Listo! Debes tener un folder nuevo en tu escritorio</li>
-      </ol>
-
-      <ol class="operations hide">
-	<li>Tu Caja Fuerte esta abierta! </li>
-	<li>Para cerrarla as lo siguente:</li>
-        <br />
-        <li>1. Ingresa la contraseña de tu caja fuerte</li>
-        <br />
-        <li>2. Escoje abrir o cerrar tu caja fuerte</li>
-      </ol>
-
-      <div class="separator"></div>
-
-      <div id="actions">
-        <div id="form">
-	  <input id="password" placeholder="contraseña" type="password" label="Contraseña">
-          <div id="modes">
-            <button class="hovereable operations hide" id="cerrar">Cerrar</button>
-            <button class="hovereable operations hide" id="abrir">Abrir</button>
-            <button class="hovereable creations hide" id="crear">Crear una caja fuerte</button>
-          </div>
-        </div>
-      </div>
-
+    <div id="2" class="text">
+      <p>
+	Primero crea tu caja fuerte!
+	<br/>
+	Escoje un Nombre para tu caja fuerte
+      </p>
+      <input id="name" placeholder="nombre" type="text" label="name">
     </div>
+    <div id="3" class="text">
+      <p>
+	Escribe la contraseña para tu caja fuerte
+      </p>
+      <input id="password" placeholder="contraseña" type="password" label="password">
+      <input id="re-password" placeholder="confirme su contraseña" type="password" label="password">
+    </div>
+    <div id="4" class="text">
+      <p>
+	Listo tu caja Fuerte esta en tu escritorio. En la siguente pagina veras un lugar para escribir tu contraseña y un botton.
+	<br/>
+	<span>
+	    ATENCIÓN:
+	    La applicacion solo tiene visibilidad a tu escritorio, entonces tu caja fuerte tiene que estar en tu escritorio. 
+	    Para que se mantenga la integridad de tu caja fuerte si deseas moverla no le cambies el nombre a tu caja fuerte. 
+	</span>
+      </p>
+    </div>
+    <button>Continuar</button>
+
   </body>
 </html>
