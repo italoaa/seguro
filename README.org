@@ -32,7 +32,9 @@ The encryption should be like this:
 
 * Tasklist after testing
 ** TODO Handle the case where the vault folder is moved but the hash.txt is still there
-** TODO Handle the name and how to remember it
+** DONE Handle the name and how to remember it
 probably a file
-** TODO model the lock page
-** TODO write the js to hook the rust api and frontend
+** DONE model the lock page
+** DONE write the js to hook the rust api and frontend
+** TODO Css the inputs
+** TODO Css the atencion

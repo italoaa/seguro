@@ -6,7 +6,6 @@ use std::{
     fs::File,
     io::{Read, Write},
 };
-use tauri::utils::config;
 use zeroize::Zeroize;
 
 // Encryption
@@ -241,11 +240,11 @@ pub fn create_vault(mut password: String, vault_name: String) -> i32 {
                 None => {
                     return 2; // There was no desktop
                 }
-                Some(mut desktop_path) => {
+                Some(mut vault_path) => {
                     // Found a desktop
                     // Create the directory
-                    desktop_path.push(vault_name);
-                    match fs::create_dir(desktop_path) {
+                    vault_path.push(vault_name);
+                    match fs::create_dir(vault_path) {
                         Ok(_) => {
                             password.zeroize(); // Remove the password from memory
                             return 0;
@@ -347,7 +346,19 @@ pub fn exists_vault() -> i32 {
     // if there is any error we can say there is no vault
     match Seguro::get_vault_name() {
         Err(_) => return 1, // not exist
-        Ok(_) => return 0,  // exists
+        Ok(vault_name) => {
+            let mut dec_path = path::desktop_dir().unwrap();
+            dec_path.push(vault_name.clone());
+            let mut enc_path = path::desktop_dir().unwrap();
+            enc_path.push(vault_name + ".encrypted");
+            match File::open(dec_path) {
+                Err(_) => match File::open(enc_path) {
+                    Err(_) => return 1,
+                    Ok(_) => return 0,
+                },
+                Ok(_) => return 0,
+            }
+        }
     }
 }
 

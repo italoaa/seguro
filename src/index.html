@@ -37,28 +37,31 @@
     </div>
     <div style="display:none;" id="4" class="text">
       <p>
-	Listo tu caja Fuerte esta en tu escritorio. En la siguente pagina veras un lugar para escribir tu contraseña y un botton.
+	Listo tu caja Fuerte esta en tu escritorio. En la siguente pagina veras un lugar para escribir tu contraseña y un switch. La applicacion mostrara verde cuando tu caja fuerte este abierta y roja cuando este cerrada.
 	<br/>
-	<span>
+	<br/>
+	<span style="color: #B32742;">
 	    ATENCIÓN:
-	    La applicacion solo tiene visibilidad a tu escritorio, entonces tu caja fuerte tiene que estar en tu escritorio. 
-	    Para que se mantenga la integridad de tu caja fuerte si deseas moverla no le cambies el nombre a tu caja fuerte. 
+	    <br/>
+	    La applicacion solo tiene visibilidad a tu escritorio, entonces tu caja fuerte tiene que estar en tu escritorio (no muevas tu caja fuerte de tu escritorio).
+	    <br/>
+	    En el caso que quieras cambiarle el nombre a tu caja fuerte retira tus archivos de la caja fuerte y borra el folder de tu escritorio. Despues "Seguro" te va a mostrar este proceso de nuevo.
 	</span>
       </p>
     </div>
     <button style="display: none;" id="continue">Continuar</button>
     <!-- end of welcome -->
 
-    <svg id="lock" xmlns="http://www.w3.org/2000/svg" width="251" height="250" viewBox="0 0 251 250" fill="none">
-      <circle cx="125.5" cy="125" r="123" fill="#4E4E50" stroke="white" stroke-width="4"/>
+    <svg style="display: none;" id="lock" xmlns="http://www.w3.org/2000/svg" width="251" height="250" viewBox="0 0 251 250" fill="none">
+      <circle cx="125.5" cy="125" r="123" fill="#1A1A1D" stroke="white" stroke-width="4"/>
       <path id="topsemi" d="M156.5 104.5C156.5 100.232 155.698 96.0059 154.14 92.0628C152.582 88.1197 150.299 84.5369 147.42 81.519C144.542 78.5011 141.124 76.1072 137.363 74.4739C133.602 72.8406 129.571 72 125.5 72C121.429 72 117.398 72.8406 113.637 74.4739C109.876 76.1072 106.458 78.5011 103.58 81.519C100.701 84.5369 98.4176 88.1197 96.8597 92.0628C95.3018 96.0059 94.5 100.232 94.5 104.5L98.0325 104.5C98.0325 100.718 98.743 96.9738 100.123 93.48C101.504 89.9863 103.527 86.8118 106.078 84.1378C108.628 81.4638 111.656 79.3426 114.989 77.8955C118.321 76.4483 121.893 75.7034 125.5 75.7034C129.107 75.7034 132.679 76.4483 136.011 77.8955C139.344 79.3426 142.372 81.4638 144.922 84.1378C147.473 86.8118 149.496 89.9863 150.877 93.48C152.257 96.9738 152.967 100.718 152.967 104.5H156.5Z" fill="white"/>
       <rect x="86.5" y="106" width="78" height="71" rx="10" fill="#1A1A1C" stroke="white" stroke-width="4"/>
       <ellipse cx="125.221" cy="136.664" rx="13.07" ry="12.536" fill="white"/>
       <path d="M121.023 157.966C121.023 160.175 122.814 161.966 125.023 161.966C127.232 161.966 129.023 160.175 129.023 157.966L121.023 157.966ZM121.023 136.017L121.023 157.966L129.023 157.966L129.023 136.017L121.023 136.017Z" fill="white"/>
     </svg>
-      <input id="password" placeholder="contraseña" type="password" label="password">
-      <svg id="switch" xmlns="http://www.w3.org/2000/svg" width="201" height="77" viewBox="0 0 201 77" fill="none">
-	<rect x="1" y="0.5" width="199" height="76" rx="38" fill="#4E4E50" stroke="white"/>
+      <input style="display: none;" id="password" placeholder="contraseña" type="password" label="password">
+      <svg style="display:none;" id="switch" xmlns="http://www.w3.org/2000/svg" width="201" height="77" viewBox="0 0 201 77" fill="none">
+	<rect x="1" y="0.5" width="199" height="76" rx="38" fill="#1A1A1D" stroke="white"/>
 	<circle cx="43" cy="38.5" r="26" fill="#4E4E50" stroke="white"/>
       </svg>
   </body>

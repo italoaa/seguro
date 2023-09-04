@@ -18,6 +18,7 @@ body {
     
     /* Style */
     background: #1A1A1C;
+    transition: background 1s ease 0s, filter 1s ease 0s;
 }
 
 h1 {
@@ -28,6 +29,7 @@ h1 {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    margin: 2rem;
     letter-spacing: -0.7px;
     text-transform: capitalize;
 }
@@ -41,6 +43,25 @@ p {
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.24px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    overflow: hidden;
+    padding: 10px;
+}
+
+input {
+    border-radius: 15px;
+    border: 4px solid #FFF;
+    background: #4E4E50;
+    width: 50%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin: auto;
 }
 
 button {
@@ -66,26 +87,24 @@ button:active {
 }
 
 #lock circle {
-    transition: fill 1s ease-out 0s;
+    stroke-dasharray: 772.9415283203125;
+    stroke-dashoffset: 772.9415283203125;
+    transition: fill 1s ease 0s, stroke-dashoffset 1s ease 0s;
 }
 
 #lock #topsemi {
     transform-origin: center center;
+    stroke-dasharray: 195.21749877929688;
+    stroke-dashoffset: 195.21749877929688;
     transition: transform 1s ease-out 0s;
-}
-
-#lock:hover #topsemi{
-    transform: translateY(-15px) translateX(-15px) rotateZ(45deg);
 }
 
 #switch circle {
-    transition: transform 1s ease-out 0s;
+    transition: transform 1s ease-out 0s, fill 0.2s ease 0s;
 }
 
 #switch rect {
-    transition: fill 1s ease-out 0s;
-}
-
-#switch:hover circle {
-    transform: translateX(120px);
+    transition: fill 1s ease-out 0s, stroke-dashoffset 1s ease 0s;
+    stroke-dasharray: 484.7960205078125;
+    stroke-dashoffset: 484.7960205078125;
 }
