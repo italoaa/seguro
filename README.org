@@ -1,5 +1,6 @@
 #+title: Seguro
 
+[[open.jpg]]
 * Description
 This is a simple application that will have a simple GUI. The purpose of this application is to speed up the process of zipping a folder encrypting it and removing the unzipped and un-encrypted version (encryption process) and also speeding up the unzipping and decrypting of the folder. The idea of the gui is to make this accessable to any person.
 
@@ -29,12 +30,3 @@ The encryption should be like this:
     3. Check the key against the hash before trying to decrypt.
     4. decryption if key is correct
     5. *DESTROY* the previous encrypted version
-
-* Tasklist after testing
-** TODO Handle the case where the vault folder is moved but the hash.txt is still there
-** DONE Handle the name and how to remember it
-probably a file
-** DONE model the lock page
-** DONE write the js to hook the rust api and frontend
-** TODO Css the inputs
-** TODO Css the atencion
